@@ -1,4 +1,5 @@
 const express = require('express');
+const os = require('os');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
@@ -20,5 +21,7 @@ app.use('/', loginRoute);
 app.use('/', contactsRoute);
 
 app.listen(SERVER_PORT, function() {
-  console.log(`Web server listening on port ${SERVER_PORT}`);
+  console.log(
+    `Web server listening on host ${os.hostname} port ${SERVER_PORT}`
+  );
 });

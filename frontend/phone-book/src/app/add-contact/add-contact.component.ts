@@ -75,9 +75,12 @@ export class AddContactComponent implements OnInit {
       this.contact.company = this.contactForm.get('company').value;
       this.contact.role = this.contactForm.get('role').value;
       this.contact.userId = user._id;
-      console.log('SAVING', this.contact);
       if (this.contact._id) {
-        this.backend.updateContact(this.contact).subscribe();
+        this.backend.updateContact(this.contact).subscribe(contact => {
+          this.contact = contact;
+          this.contactForm.reset();
+          this.router.navigate([ROUTES.contacts]);
+        });
       } else {
         this.backend.createContact(this.contact).subscribe(contact => {
           this.contact = contact;
