@@ -39,6 +39,24 @@ router.post(
   }
 );
 
+router.delete(
+  '/contact',
+  passport.authenticate('jwt', { session: false }),
+  function(req, res, next) {
+    if (req.query && req.query.id) {
+      contacts.findByIdAndRemove(req.query.id, (err, contacts) => {
+        if (err) {
+          res.status(500);
+          return;
+        }
+        res.json(contacts);
+      });
+    } else {
+      res.json({ msg: 'contact not found' });
+    }
+  }
+);
+
 router.get(
   '/contacts',
   passport.authenticate('jwt', { session: false }),

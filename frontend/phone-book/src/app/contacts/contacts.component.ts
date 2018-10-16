@@ -9,6 +9,7 @@ import PerfectScrollbar from 'perfect-scrollbar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ROUTES } from '@core/constants/routes';
 import { ContactModel } from '@core/models/contact';
+import { BackendService } from '@core/backend/backend.service';
 
 interface ContactItem {
   id: string;
@@ -29,7 +30,11 @@ export class ContactsComponent implements OnInit, AfterViewInit, OnDestroy {
   public scrollAreaElRef: ElementRef;
   private perfectScrollbar: PerfectScrollbar;
 
-  constructor(private router: Router, private activeRoute: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private activeRoute: ActivatedRoute,
+    private backend: BackendService
+  ) {}
 
   ngAfterViewInit() {
     if (this.scrollAreaElRef) {
@@ -78,5 +83,16 @@ export class ContactsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onAddClick() {
     this.router.navigate([ROUTES.addContact]);
+  }
+
+  onContactDelete(evt: MouseEvent, contact: ContactItem) {
+    evt.stopPropagation();
+    this.backend.deleteContact(contact.id).subscribe(() => {
+      this.contacts = this.contacts.filter(c => c.id !== contact.id);
+      this.filteredContacts = [...this.contacts];
+      this.availableContactsFirstLetter = this.availableContactsFirstLetter.filter(
+        e => e !== contact.firstLetter
+      );
+    });
   }
 }

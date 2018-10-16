@@ -25,69 +25,31 @@ export class BackendService {
   }
 
   public getContacts(): Observable<ContactModel[]> {
-    return this.storage.getToken().pipe(
-      mergeMap(token => {
-        const headers = new HttpHeaders().set(
-          'Authorization',
-          `bearer ${token.token}`
-        );
-        return this.http.get<ContactModel[]>(`${environment.apiUrl}contacts`, {
-          headers
-        });
-      })
-    );
+    return this.http.get<ContactModel[]>(`${environment.apiUrl}contacts`);
   }
 
   public getContactById(id: string): Observable<ContactModel> {
-    return this.storage.getToken().pipe(
-      mergeMap(token => {
-        const headers = new HttpHeaders().set(
-          'Authorization',
-          `bearer ${token.token}`
-        );
-        const params = new HttpParams().set('id', id);
-        return this.http.get<ContactModel>(`${environment.apiUrl}contacts`, {
-          headers,
-          params
-        });
-      })
-    );
+    const params = new HttpParams().set('id', id);
+    return this.http.get<ContactModel>(`${environment.apiUrl}contacts`, {
+      params
+    });
+  }
+
+  public deleteContact(contactId: string): Observable<any> {
+    const params = new HttpParams().set('id', contactId);
+    return this.http.delete<ContactModel>(`${environment.apiUrl}contact`, {
+      params
+    });
   }
 
   public updateContact(updatedContact: ContactModel): Observable<any> {
-    return this.storage.getToken().pipe(
-      mergeMap(token => {
-        const headers = new HttpHeaders().set(
-          'Authorization',
-          `bearer ${token.token}`
-        );
-        return this.http.post<ContactModel>(
-          `${environment.apiUrl}contact`,
-          updatedContact,
-          {
-            headers
-          }
-        );
-      })
+    return this.http.post<ContactModel>(
+      `${environment.apiUrl}contact`,
+      updatedContact
     );
   }
 
   public createContact(contact: ContactModel): Observable<any> {
-    console.log('creating contanct', contact);
-    return this.storage.getToken().pipe(
-      mergeMap(token => {
-        const headers = new HttpHeaders().set(
-          'Authorization',
-          `bearer ${token.token}`
-        );
-        return this.http.put<ContactModel>(
-          `${environment.apiUrl}contact`,
-          contact,
-          {
-            headers
-          }
-        );
-      })
-    );
+    return this.http.put<ContactModel>(`${environment.apiUrl}contact`, contact);
   }
 }

@@ -9,6 +9,13 @@
 
 }
 
+.app-contacts__delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+}
+
 @media screen and (max-width: map-get($breakpoints, mobile)) {
   .app-contacts__items-container {
     left: 50%;
