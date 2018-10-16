@@ -1,0 +1,29 @@
+@import '~@angular/material/theming';
+@import '~src/sass/variables';
+
+
+.app-navtop {
+  @include mat-elevation(4, $default-black-color, 0.5);
+  height: $navbar-height;
+  width: 100vw;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $higer-z-index;
+}
+
+.app-nav__more-btn {
+  margin-right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.app-navtop__item {
+  height: 100%;
+}
+
+.app-navtop__logout {
+  position: absolute;
+  right: 0;
+}

@@ -1,0 +1,26 @@
+@import '~src/sass/variables';
+
+.app-contacts {
+
+}
+
+.app-contacts__items-container {
+  position: relative;
+
+}
+
+@media screen and (max-width: map-get($breakpoints, mobile)) {
+  .app-contacts__items-container {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media screen and (min-width: map-get($breakpoints, mobile) + 1) {
+  .app-contacts__items-container {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
+}

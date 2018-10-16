@@ -1,0 +1,49 @@
+@import '~@angular/material/theming';
+@import '~src/sass/variables';
+
+.app-login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.app-login__header {
+  position: fixed;
+  top: 15%;
+  font-family: 'Merienda', cursive;
+}
+
+.app-login__form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.app-login__submit-btn {
+  height: 3rem;
+  width: 75%;
+  font-size: 1.2rem;
+  position: fixed;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media screen and (min-width: map-get($breakpoints, mobile)) {
+  .app-login__header {
+    position: static;
+    margin-bottom: 3rem;
+  }
+
+  .app-login__submit-btn {
+    margin-top: 3rem;
+    width: auto;
+    position: initial;
+    left: 0;
+    transform: none;
+  }
+}

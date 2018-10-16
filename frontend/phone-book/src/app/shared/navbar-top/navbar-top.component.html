@@ -1,0 +1,22 @@
+<nav class="app-navtop">
+  <div class="app-navtop__item">
+    <mat-form-field appearance="outline">
+      <input type="text" aria-label="Number" matInput [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange($event)"
+        [matAutocomplete]="auto">
+      <button mat-button *ngIf="searchTerm; else searchIconElRef" matSuffix mat-icon-button aria-label="Clear" (click)="resetSearchTerm()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <ng-template #searchIconElRef>
+        <mat-icon matSuffix>search</mat-icon>
+      </ng-template>
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions" [value]="option[searchField]">
+          {{option[searchField]}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <button mat-button class="app-navtop__logout" (click)="onLogout()">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</nav>

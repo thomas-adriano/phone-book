@@ -1,0 +1,17 @@
+<section class="app-contacts">
+  <app-navbar-top [searchOptions]="contacts" searchField="name" (results)="onNavSearchResult($event)"></app-navbar-top>
+  <mat-selection-list>
+    <div #scrollAreaElRef class="app-contacts__items-container">
+      <div *ngFor="let firstLetter of availableContactsFirstLetter">
+        <h3 matSubheader>{{firstLetter}}</h3>
+        <mat-list-option *ngFor="let contact of filteredContacts | filterByFirstLetter:firstLetter" (click)="onContactClick(contact)">
+          <img matListAvatar src="{{contact.thumb}}" alt="contact photo">
+          <h4 matLine>{{contact.name}}</h4>
+        </mat-list-option>
+      </div>
+    </div>
+  </mat-selection-list>
+  <button mat-mini-fab color="primary" class="c-fab" (click)="onAddClick()">
+    <mat-icon>add</mat-icon>
+  </button>
+</section>

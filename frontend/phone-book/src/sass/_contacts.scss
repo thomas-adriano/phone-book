@@ -1,0 +1,17 @@
+.app-contacts__add-btn {
+  .mat-icon.material-icons {
+    font-size: 2rem !important;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.app-contacts {
+  .mat-pseudo-checkbox {
+    display: none;
+  }
+}
+
+.mat-selection-list .mat-subheader:first-child {
+  margin-top: 0 !important;
+}

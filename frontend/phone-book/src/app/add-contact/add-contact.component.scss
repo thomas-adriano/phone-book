@@ -1,0 +1,15 @@
+.app-add-contact {
+  height: 100%;
+  width: 100%;
+}
+
+.app-add-contact, .app-add-contact__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-add-contact__form {
+  margin: 1rem;
+}

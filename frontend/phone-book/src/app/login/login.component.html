@@ -1,0 +1,14 @@
+<section class="app-login">
+  <h1 class="headline app-login__header" color="accent">Bem-vindo de volta!</h1>
+  <form (submit)="onSumbit()" class="app-login__form">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Codigo de acesso</mat-label>
+      <input autofocus matInput [formControl]="accessCodeFromControl" type="number">
+      <mat-hint>Nunca divida este código com ninguém</mat-hint>
+      <mat-error *ngIf="accessCodeFromControl.invalid">
+        O código de acesso é <strong>obrigatorio</strong>
+      </mat-error>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary" class="app-login__submit-btn">Entrar</button>
+  </form>
+</section>
