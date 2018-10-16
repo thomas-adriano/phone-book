@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 app.use(cors());
 auth.setUpJWT();
 database.connectMongoDB();
+database.createDefaultUsers();
 
 app.use('/', statusRoute);
 app.use('/', loginRoute);
